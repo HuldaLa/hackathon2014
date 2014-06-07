@@ -1,11 +1,18 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: michael.indyk
+ * Date: 07.06.14
+ * Time: 18:59
+ */
 
 namespace Entities;
 
-class Character {
+
+class Universe {
+
 	private $id;
 	private $name;
-	private $universe;
 
 	/**
 	 * @param mixed $id
@@ -36,26 +43,6 @@ class Character {
 	 */
 	public function getName()
 	{
-		return $this->name;
-	}
-
-	/**
-	 * @param mixed $universe
-	 */
-	public function setUniverse($universe)
-	{
-		$this->universe = $universe;
-	}
-
-	/**
-	 * @return mixed
-	 */
-	public function getUniverse()
-	{
-		return $this->universe;
-	}
-
-	public function __toString() {
 		return $this->name;
 	}
 } 
