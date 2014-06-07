@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 require '../vendor/autoload.php';
 
 define ('PATH_ROOT', realpath(dirname(__FILE__)) . '/../');
@@ -15,11 +14,7 @@ $engine = new \League\Plates\Engine(PATH_VIEW);
 $template = new \League\Plates\Template($engine);
 
 //--- TEMPLATE CONFIG
-=======
-define('DS', DIRECTORY_SEPARATOR);
 
-require '..' . DS . 'vendor' . DS . 'autoload.php';
->>>>>>> bfd49de2092a1b5796d181d1ede9dc6dee639929
 
 $app = new \Slim\Slim();
 
