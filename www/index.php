@@ -19,7 +19,7 @@ $template = new \League\Plates\Template($engine);
 $app = new \Slim\Slim();
 
 $app->get('/', function() use ($template) {
-	$template->render('index');
+	echo $template->render('index');
 });
 
 $app->get('/hello/:name', function ($name) use ($template) {
