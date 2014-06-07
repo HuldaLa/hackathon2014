@@ -13,12 +13,12 @@ class Character extends Crud {
 	 * @todo transaction
 	 */
 	public function create(\Entities\Character $char) {
-		$result = $this->db->query("INSERT INTO people (name) VALUES ('%s')", $char->getName());
+		$result = $this->db->query("INSERT INTO characters (name) VALUES ('%s')", $char->getName());
 		if ($result === false) {
 			throw new \RuntimeException('not able to create character ' . $char);
 		}
 		$char->setId($this->db->getLastInsertId());
-		$result = $this->db->query("INSERT INTO people_universe (people_id, universe_id)", $char->getId(), $char->getUniverse()->getId());
+		$result = $this->db->query("INSERT INTO character_universe (people_id, universe_id)", $char->getId(), $char->getUniverse()->getId());
 		if ($result === false) {
 			throw new \RuntimeException('not able to create character ' . $char);
 		}

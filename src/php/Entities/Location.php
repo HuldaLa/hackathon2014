@@ -1,15 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: michael.indyk
- * Date: 07.06.14
- * Time: 18:59
- */
 
 namespace Entities;
 
 
-class Universe {
+class Location {
 
 	private $id;
 	private $name;
@@ -45,6 +39,7 @@ class Universe {
 	{
 		return $this->name;
 	}
+
 
 	public function __toString() {
 		return $this->name;
