@@ -5,9 +5,9 @@
 	<title>App</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="<?php echo $this->url('/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo $this->url('/css/bootstrap-theme.min.css'); ?>">
+	<link rel="stylesheet" href="<?php echo $this->url('/css/app.css'); ?>" />
 </head>
 <body>
     <h1>Hello!</h1>
@@ -18,8 +18,8 @@
         <button type="button" class="btn btn-default">Right</button>
     </div>
 
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script charset="utf-8" src="js/app.js"></script>
+    <script src="<?php echo $this->url('/js/jquery-2.1.1.min.js'); ?>"></script>
+    <script src="<?php echo $this->url('/js/bootstrap.min.js'); ?>"></script>
+    <script charset="utf-8" src="<?php echo $this->url('/js/app.js'); ?>"></script>
 </body>
 </html>

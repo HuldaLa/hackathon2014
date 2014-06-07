@@ -2,22 +2,32 @@
 #loader required for routes configuration
 $loader = require '../vendor/autoload.php';
 
-define ('PATH_ROOT', realpath(dirname(__FILE__)) . '/../');
-defined('PATH_WWW') or define('PATH_WWW', PATH_ROOT . 'www/');
-defined('PATH_SRC') or define('PATH_SRC', PATH_ROOT . 'src/');
-defined('PATH_VIEW') or define('PATH_VIEW', PATH_SRC . 'html/');
-defined('PATH_ETC') or define('PATH_ETC', PATH_ROOT . 'etc/');
+// Little helper constant.
+define('DS', DIRECTORY_SEPARATOR);
+
+define ('PATH_ROOT', realpath(dirname(__FILE__)) . DS . '..');
+defined('PATH_WWW') or define('PATH_WWW', PATH_ROOT . DS . 'www');
+defined('PATH_SRC') or define('PATH_SRC', PATH_ROOT . DS . 'src');
+defined('PATH_PHP') or define('PATH_PHP', PATH_SRC . DS . 'php');
+defined('PATH_PHP_LIB') or define('PATH_PHP_LIB', PATH_PHP . DS . 'lib');
+defined('PATH_VIEW') or define('PATH_VIEW', PATH_SRC . DS . 'html');
+defined('PATH_ETC') or define('PATH_ETC', PATH_ROOT . DS . 'etc');
+
+// Add library folder of to autoload paths.
+$loader->add(NULL, PATH_PHP_LIB);
 
 //+++ TEMPLATE CONFIG
 // Create new Plates engine
 $engine = new \League\Plates\Engine(PATH_VIEW);
 // Create a new template
 $template = new \League\Plates\Template($engine);
+// Register url extension.
+$engine->loadExtension(new \Plates\Extension\SlimUrl());
 
 //--- TEMPLATE CONFIG
 
 //+++ CONFIG
-$configPath = PATH_ETC. 'config.json';
+$configPath = PATH_ETC .  DS . 'config.json';
 if (!file_exists($configPath)) {
 	exit('copy etc/config.json-dist to etc/config.json');
 }
@@ -28,6 +38,7 @@ $config = json_decode($configRaw);
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
 
-require 'routes.php';
+// Include router configuration.
+require PATH_PHP . DS . 'routes.php';
 
 $app->run();

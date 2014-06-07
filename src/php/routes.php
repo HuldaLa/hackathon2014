@@ -9,11 +9,6 @@ $app->get('/', function() use ($template) {
     echo $template->render('index');
 });
 
-/* adding classes used in routes to autoloader */
-$loader->add('Controller\Character', PATH_SRC.'/php');
-$loader->add('Controller\Event', PATH_SRC.'/php');
-$loader->add('Controller\Place', PATH_SRC.'/php');
-
 $classMap = array (
     'character' => '\Controller\Character',
     'place'   => '\Controller\Place',
