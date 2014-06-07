@@ -2,31 +2,31 @@
 namespace Controller;
 
 class Place {
-    function showAll() {
+    function showAll($template) {
         echo "list of places";
     }
 
-    function show($id) {
+    function show($id, $template) {
         echo "show place with id: $id";
     }
 
-    function showCreate() {
+    function showCreate($template) {
         echo "place creation form";
     }
 
-    function showUpdate($id) {
+    function showUpdate($id, $template) {
         echo "place $id update form";
     }
 
-    function create() {
+    function create($template) {
         echo "new place created!";
     }
 
-    function update($id) {
+    function update($id, $template) {
         echo "place $id updated!";
     }
 
-    function delete($id) {
+    function delete($id, $template) {
         echo "place $id deleted";
     }
 

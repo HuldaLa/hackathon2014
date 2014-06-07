@@ -2,31 +2,31 @@
 namespace Controller;
 
 class Character {
-    function showAll() {
+    function showAll($template) {
         echo "list of characters";
     }
 
-    function show($id) {
+    function show($id, $template) {
         echo "show character with id: $id";
     }
 
-    function showCreate() {
+    function showCreate($template) {
         echo "character creation form";
     }
 
-    function showUpdate($id) {
+    function showUpdate($id, $template) {
         echo "character $id update form";
     }
 
-    function create() {
+    function create($template) {
         echo "new character created!";
     }
 
-    function update($id) {
+    function update($id, $template) {
         echo "character $id updated!";
     }
 
-    function delete($id) {
+    function delete($id, $template) {
         echo "character $id deleted";
     }
 
