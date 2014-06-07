@@ -1,0 +1,7 @@
+{
+	"db" : {
+		"user" : "dbuser",
+		"pwd" : "dbpwd",
+		"host" : "localhost"
+	}
+}
