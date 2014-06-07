@@ -30,4 +30,4 @@ class Character {
         echo "character $id deleted";
     }
 
-} 
+}

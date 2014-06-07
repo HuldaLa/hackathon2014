@@ -1,4 +1,5 @@
 <?php
+#loader required for routes configuration
 $loader = require '../vendor/autoload.php';
 
 define ('PATH_ROOT', realpath(dirname(__FILE__)) . '/../');
@@ -23,13 +24,6 @@ if (!file_exists($configPath)) {
 $configRaw = file_get_contents($configPath);
 $config = json_decode($configRaw);
 //--- CONFIG
-
-
-//+++ AUTOLOADER
-$loader->add('Controller\Character', PATH_SRC.'/php');
-$loader->add('Controller\Event', PATH_SRC.'/php');
-$loader->add('Controller\Place', PATH_SRC.'/php');
-//--- AUTOLOADER
 
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
