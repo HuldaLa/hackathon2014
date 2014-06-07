@@ -16,6 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='Zeiteinheiten';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `categories`
+--
+
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'Buch'), (2,'Serie'), (3,'Staffel'),(4,'Kapitel'), (5,'Episode');
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `events`
 --
 
@@ -23,9 +47,10 @@ DROP TABLE IF EXISTS `events`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `events` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(500) DEFAULT NULL,
-  `description` text
+  `description` text,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Ereignisse';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,48 +64,74 @@ LOCK TABLES `events` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `people`
+-- Table structure for table `characters`
 --
 
-DROP TABLE IF EXISTS `people`;
+DROP TABLE IF EXISTS `characters`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `people` (
-  `id` int(11) DEFAULT NULL,
-  `name` varchar(500) DEFAULT NULL
+CREATE TABLE `characters` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Protagonisten';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `people`
+-- Dumping data for table `characters`
 --
 
-LOCK TABLES `people` WRITE;
-/*!40000 ALTER TABLE `people` DISABLE KEYS */;
-/*!40000 ALTER TABLE `people` ENABLE KEYS */;
+LOCK TABLES `characters` WRITE;
+/*!40000 ALTER TABLE `characters` DISABLE KEYS */;
+/*!40000 ALTER TABLE `characters` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `people_events`
+-- Table structure for table `characters_events`
 --
 
-DROP TABLE IF EXISTS `people_events`;
+DROP TABLE IF EXISTS `characters_events`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `people_events` (
-  `id` int(11) DEFAULT NULL,
-  `person_id` int(11) DEFAULT NULL,
-  `event_id` int(11) DEFAULT NULL
+CREATE TABLE `characters_events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `character_id` int(11) DEFAULT NULL,
+  `event_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Beziehung zwischen Protagonisten und Ereignissen';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `people_events`
+-- Dumping data for table `characters_events`
 --
 
-LOCK TABLES `people_events` WRITE;
-/*!40000 ALTER TABLE `people_events` DISABLE KEYS */;
-/*!40000 ALTER TABLE `people_events` ENABLE KEYS */;
+LOCK TABLES `characters_events` WRITE;
+/*!40000 ALTER TABLE `characters_events` DISABLE KEYS */;
+/*!40000 ALTER TABLE `characters_events` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `characters_universes`
+--
+
+DROP TABLE IF EXISTS `characters_universes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `characters_universes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `character_id` int(11) DEFAULT NULL,
+  `univers_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Beziehungen zwischen Orte und characteren';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `characters_universes`
+--
+
+LOCK TABLES `characters_universes` WRITE;
+/*!40000 ALTER TABLE `characters_universes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `characters_universes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -91,8 +142,9 @@ DROP TABLE IF EXISTS `places`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `places` (
-  `id` int(11) DEFAULT NULL,
-  `name` varchar(500) DEFAULT NULL
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Orte';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -113,9 +165,10 @@ DROP TABLE IF EXISTS `places_events`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `places_events` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `place_id` int(11) DEFAULT NULL,
-  `event_id` int(11) DEFAULT NULL
+  `event_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Beziehung zwischen Orten und Ereignissen';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -129,26 +182,27 @@ LOCK TABLES `places_events` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `places_unviverses`
+-- Table structure for table `places_universes`
 --
 
-DROP TABLE IF EXISTS `places_unviverses`;
+DROP TABLE IF EXISTS `places_universes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `places_unviverses` (
-  `id` int(11) DEFAULT NULL,
+CREATE TABLE `places_universes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `place_id` int(11) DEFAULT NULL,
-  `universe_id` int(11) DEFAULT NULL
+  `universe_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Beziehung zwischen Orte und Universen';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `places_unviverses`
+-- Dumping data for table `places_universes`
 --
 
-LOCK TABLES `places_unviverses` WRITE;
-/*!40000 ALTER TABLE `places_unviverses` DISABLE KEYS */;
-/*!40000 ALTER TABLE `places_unviverses` ENABLE KEYS */;
+LOCK TABLES `places_universes` WRITE;
+/*!40000 ALTER TABLE `places_universes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `places_universes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -159,9 +213,10 @@ DROP TABLE IF EXISTS `universes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `universes` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(500) DEFAULT NULL,
-  `description` text
+  `description` text,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Ereignisse';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -173,56 +228,55 @@ LOCK TABLES `universes` WRITE;
 /*!40000 ALTER TABLE `universes` DISABLE KEYS */;
 /*!40000 ALTER TABLE `universes` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-DROP TABLE IF EXISTS `people_places`;
-CREATE TABLE `people_places` (
-  `id` int(11) DEFAULT NULL,
-  `name` varchar(500) DEFAULT NULL,
-  `description` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Beziehungen zwischen Orte und Personen';
 
 --
--- Dumping data for table `universes`
+-- Table structure for table `universes_categories`
 --
 
-LOCK TABLES `people_places` WRITE;
-/*!40000 ALTER TABLE `people_places` DISABLE KEYS */;
-/*!40000 ALTER TABLE `people_places` ENABLE KEYS */;
+DROP TABLE IF EXISTS `universes_categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `universes_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `univers_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Konfiguration von Universen zur Zeiteinteilung';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `universes_categories`
+--
+
+LOCK TABLES `universes_categories` WRITE;
+/*!40000 ALTER TABLE `universes_categories` DISABLE KEYS */;
+/*!40000 ALTER TABLE `universes_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-
-DROP TABLE IF EXISTS `story_time_lines`;
-CREATE TABLE `story_time_lines` (
-  `id` int(11) DEFAULT NULL,
-  `univers_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Erzählte Zeit inhaltlicher Zeitstrahl';
-
 --
--- Dumping data for table `universes`
+-- Table structure for table `universes_categories_events`
 --
 
-LOCK TABLES `story_time_lines` WRITE;
-/*!40000 ALTER TABLE `story_time_lines` DISABLE KEYS */;
-/*!40000 ALTER TABLE `story_time_lines` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-DROP TABLE IF EXISTS `story_time_lines_events`;
-CREATE TABLE `story_time_lines_events` (
-  `id` int(11) DEFAULT NULL,
-  `story_time_line_id` int(11) DEFAULT NULL,
-  `event_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Beziehung zwischen inhaltlichem Zeitstrahl und Ereignissen';
+DROP TABLE IF EXISTS `universes_categories_events`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `universes_categories_events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `univers_id` int(11) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `event_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Zurdnung von Events zu Kategorien';
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `universes`
+-- Dumping data for table `universes_categories_events`
 --
 
-LOCK TABLES `story_time_lines_events` WRITE;
-/*!40000 ALTER TABLE `story_time_lines_events` DISABLE KEYS */;
-/*!40000 ALTER TABLE `story_time_lines_events` ENABLE KEYS */;
+LOCK TABLES `universes_categories_events` WRITE;
+/*!40000 ALTER TABLE `universes_categories_events` DISABLE KEYS */;
+/*!40000 ALTER TABLE `universes_categories_events` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
