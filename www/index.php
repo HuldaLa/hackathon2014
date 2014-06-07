@@ -4,7 +4,7 @@ require '../vendor/autoload.php';
 define ('PATH_ROOT', realpath(dirname(__FILE__)) . '/../');
 defined('PATH_WWW') or define('PATH_WWW', PATH_ROOT . 'www/');
 defined('PATH_SRC') or define('PATH_SRC', PATH_ROOT . 'src/');
-defined('PATH_VIEW') or define('PATH_VIEW', PATH_SRC . 'main/html/');
+defined('PATH_VIEW') or define('PATH_VIEW', PATH_SRC . 'html/');
 defined('PATH_ETC') or define('PATH_ETC', PATH_ROOT . 'etc/');
 
 //+++ TEMPLATE CONFIG
