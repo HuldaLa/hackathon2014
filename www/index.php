@@ -38,6 +38,10 @@ $app->get('/hello/:name', function ($name) use ($template) {
     echo "Hello, $name";
 });
 
+/* general rule for ids to consist of digits */
+\Slim\Route::setDefaultConditions(array(
+    'id' => '\d+'
+));
 
 /* routes for showing character related views/forms */
 $app->get('/characters', 'showCharacterList');
