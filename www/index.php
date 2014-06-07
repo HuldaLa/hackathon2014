@@ -3,6 +3,15 @@ define('DS', DIRECTORY_SEPARATOR);
 
 require '..' . DS . 'vendor' . DS . 'autoload.php';
 
+//+++ TEMPLATE CONFIG
+// Create new Plates engine
+$engine = new \League\Plates\Engine(PATH_VIEW);
+// Create a new template
+$template = new \League\Plates\Template($engine);
+
+//--- TEMPLATE CONFIG
+
+
 $app = new \Slim\Slim();
 \Slim\Route::setDefaultConditions(array(
     'id' => '\d+'
