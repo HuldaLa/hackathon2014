@@ -1,5 +1,9 @@
 <?php
-define('DS', DIRECTORY_SEPARATOR);
+require '../vendor/autoload.php';
+require_once('../src/php/controller/character.php');
+require_once('../src/php/controller/event.php');
+require_once('../src/php/controller/place.php');
+
 define ('PATH_ROOT', realpath(dirname(__FILE__)) . '/../');
 defined('PATH_WWW') or define('PATH_WWW', PATH_ROOT . 'www/');
 defined('PATH_SRC') or define('PATH_SRC', PATH_ROOT . 'src/');
@@ -16,11 +20,12 @@ $template = new \League\Plates\Template($engine);
 
 
 $app = new \Slim\Slim();
-\Slim\Route::setDefaultConditions(array(
-    'id' => '\d+'
-));
 
-$app->get('/hello/:name', function ($name) {
+$app->get('/', function() use ($template) {
+    echo $template->render('index');
+});
+
+$app->get('/hello/:name', function ($name) use ($template) {
     echo "Hello, $name";
 });
 
@@ -56,4 +61,5 @@ $app->get('/event/:id/update', 'showUpdateEvent');
 $app->post('/event/create', 'createEvent');
 $app->post('/event/:id/update', 'updateEvent');
 $app->post('/event/:id/delete', 'deleteEvent');
+
 $app->run();
