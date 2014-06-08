@@ -10,6 +10,9 @@
                     <td><?php echo $character['name'] ?></td>
                 </tr>
             <?php endforeach ?>
+        </table>
+        <div>
+            <a href="<?php echo $this->url('/characters/create'); ?>" class="btn btn-default">Add Character</a>
         </div>
     </div>
 <?php $this->end() ?>

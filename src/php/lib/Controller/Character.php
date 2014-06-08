@@ -35,7 +35,7 @@ class Character {
         $crud_char = new \Crud\Character();
         $new_char = $crud_char->create($character);
 
-        $app->redirect('/characters');
+        $app->redirect($template->url('/characters'));
     }
 
     function update($id, $app, $template) {

@@ -3,7 +3,9 @@ namespace Controller;
 
 class Place {
     function showAll($app, $template) {
-        echo "list of places";
+        $crud_place = new \Crud\Place();
+        $template->places = $crud_place->getAll();
+        echo $template->render('places');
     }
 
     function show($id, $app, $template) {
@@ -11,6 +13,8 @@ class Place {
     }
 
     function showCreate($app, $template) {
+        $crud_universe = new \Crud\Universe();
+        $template->universes = $crud_universe->getAll();
         echo $template->render('forms/create_places');
     }
 
@@ -19,7 +23,19 @@ class Place {
     }
 
     function create($app, $template) {
-        echo "new place created!";
+        $name = $app->request->params('name');
+        $description = $app->request->params('description');
+        $universe = $app->request->params('universes');
+
+        $place = new \Entities\Place();
+        $place->setName($name);
+        $place->setDescription($description);
+        $place->setUniverse($universe);
+
+        $crud_place = new \Crud\Place();
+        $crud_place->create($place);
+
+        return $app->redirect($template->url('/places'));
     }
 
     function update($id, $app, $template) {

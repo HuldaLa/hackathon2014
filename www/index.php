@@ -40,7 +40,7 @@ $app = new \Slim\Slim();
 
 // Initiate the database once and for all time
 require_once(PATH_PHP_LIB . '/Database/MySQL/MysqliDb.php');
-$db = new MysqliDb('localhost', 'root', 'root', 'hackathon2k14');
+$db = new MysqliDb('localhost', 'root', '', 'hackathon2k14');
 
 // Include router configuration.
 require PATH_PHP . DS . 'routes.php';

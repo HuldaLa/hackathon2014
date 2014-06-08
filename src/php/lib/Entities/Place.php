@@ -3,7 +3,7 @@
 namespace Entities;
 
 
-class Location {
+class Place	 {
 
 	private $id;
 	private $name;
@@ -39,6 +39,40 @@ class Location {
 	{
 		return $this->name;
 	}
+
+
+	/**
+	 * @param mixed $name
+	 */
+	public function setDescription($description)
+	{
+		$this->description = $description;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getDescription()
+	{
+		return $this->description;
+	}
+
+	/**
+	 * @param mixed $universe
+	 */
+	public function setUniverse($universe)
+	{
+		$this->universe = $universe;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getUniverse()
+	{
+		return $this->universe;
+	}
+
 
 
 	public function __toString() {
