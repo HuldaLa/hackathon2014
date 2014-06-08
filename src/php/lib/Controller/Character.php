@@ -5,7 +5,9 @@ namespace Controller;
 
 class Character {
     function showAll($engine, $template) {
-        echo "list of characters";
+        $crud_character = new \Crud\Character();
+        $template->characters = $crud_character->getAll();
+        echo $template->render('characters');
     }
 
     function show($id, $engine, $template) {
@@ -23,6 +25,7 @@ class Character {
     }
 
     function create($engine, $template) {
+        $app = \Slim\Slim::getInstance();
         $name = $app->request->params('name');
         $universe = $app->request->params('universes');
 

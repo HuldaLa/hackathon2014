@@ -23,7 +23,8 @@ class Place {
         echo $template->render('forms/update_places');
     }
 
-    function create($app, $template) {
+    function create($engine, $template) {
+        $app = \Slim\Slim::getInstance();
         $name = $app->request->params('name');
         $description = $app->request->params('description');
         $universe = $app->request->params('universes');
