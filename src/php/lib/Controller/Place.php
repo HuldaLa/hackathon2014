@@ -13,7 +13,7 @@ class Place {
         echo "show place with id: $id";
     }
 
-    function showCreate($app, $template) {
+    function showCreate($engine, $template) {
         $crud_universe = new \Crud\Universe();
         $template->universes = $crud_universe->getAll();
         echo $template->render('forms/create_places');
