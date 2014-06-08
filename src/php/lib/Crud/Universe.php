@@ -19,7 +19,7 @@ class Universe extends Crud {
 	}
 
     public function getAll() {
-        $universes = $this->db->get('universes', 10);
+        $universes = $this->db->get('universes');
         if (isset($universes)) {
             return $universes;
         }

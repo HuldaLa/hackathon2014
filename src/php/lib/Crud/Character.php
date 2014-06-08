@@ -2,9 +2,6 @@
 
 namespace Crud;
 
-
-use Database\MySQL\DbResult;
-
 class Character extends Crud {
 
 	/**
@@ -24,6 +21,14 @@ class Character extends Crud {
 
         throw new \RuntimeException("not able to create character ", $char);
 	}
+
+    public function getAll() {
+        $characters = $this->db->get('characters');
+        if (isset($characters)) {
+            return $characters;
+        }
+        throw new \RuntimeException("not able to read characters.");
+    }
 
 	/**
 	 * @param $id

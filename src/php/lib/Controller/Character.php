@@ -5,7 +5,9 @@ namespace Controller;
 
 class Character {
     function showAll($app, $template) {
-        echo "list of characters";
+        $crud_char = new \Crud\Character();
+        $template->characters = $crud_char->getAll();
+        echo $template->render('characters');
     }
 
     function show($id, $app, $template) {
@@ -24,7 +26,16 @@ class Character {
 
     function create($app, $template) {
         $name = $app->request->params('name');
-        echo "new character $name created!";
+        $universe = $app->request->params('universes');
+
+        $character = new \Entities\Character();
+        $character->setName($name);
+        $character->setUniverse($universe);
+
+        $crud_char = new \Crud\Character();
+        $new_char = $crud_char->create($character);
+
+        $app->redirect('/characters');
     }
 
     function update($id, $app, $template) {
