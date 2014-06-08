@@ -3,7 +3,7 @@ namespace Controller;
 
 class Place {
 
-    function showAll($app, $template) {
+    function showAll($engine, $template) {
         $crud_place = new \Crud\Place();
         $template->places = $crud_place->getAll();
         echo $template->render('places');
