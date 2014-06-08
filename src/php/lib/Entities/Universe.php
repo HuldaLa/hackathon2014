@@ -13,6 +13,7 @@ class Universe {
 
 	private $id;
 	private $name;
+	private $description;
 
 	/**
 	 * @param mixed $id
@@ -45,6 +46,23 @@ class Universe {
 	{
 		return $this->name;
 	}
+
+	/**
+	 * @param mixed $name
+	 */
+	public function setDescription($description)
+	{
+		$this->description = $description;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getDescription()
+	{
+		return $this->description;
+	}
+
 
 	public function __toString() {
 		return $this->name;

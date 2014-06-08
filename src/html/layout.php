@@ -8,15 +8,17 @@
     <link rel="stylesheet" href="<?php echo $this->url('/css/bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo $this->url('/css/bootstrap-theme.min.css'); ?>">
 	<link rel="stylesheet" href="<?php echo $this->url('/css/app.css'); ?>" />
+    <link rel="stylesheet" href="<?php echo $this->url('/css/sidebar.css'); ?>" />
 </head>
 <body>
-    <!-- <a href="<?php # echo  ?>" class="btn btn-default">Add Event</a> -->
-
-    <?php require 'modal.html' ?>
-
-    <div id="content">
-        <?php echo $this->content ?>
+    <div id="wrapper" class="active">
+        <?php require 'sidebar.php' ?>
+        
+        <div id="page-content-wrapper">
+            <?php echo $this->content ?>
+        </div>
     </div>
+    <?php require 'modal.html' ?>
 
     <script src="<?php echo $this->url('/js/jquery-2.1.1.min.js'); ?>"></script>
     <script src="<?php echo $this->url('/js/bootstrap.min.js'); ?>"></script>

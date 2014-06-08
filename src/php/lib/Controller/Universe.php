@@ -3,15 +3,15 @@ namespace Controller;
 
 class Universe {
     function showAll($engine, $template) {
-        $place = new \Crud\Place();
+        $crud_univers = new \Crud\Universe();
+        $template->universes = $crud_univers->getAll();
 
-        var_dump($place->get(10));
-        exit;
+        echo $template->render('universes');
     }
 
     function show($id, $engine, $template) {
         // Dummy data.
-        $universe = array(
+        $universee = array(
             'id' => 1,
             'name' => 'Walking Dead',
             'category' => array(
@@ -36,23 +36,36 @@ class Universe {
     }
 
     function showCreate($engine, $template) {
-        echo $template->render('forms/create_places');
+        echo $template->render('forms/create_universe');
     }
 
     function showUpdate($id, $engine, $template) {
-        echo $template->render('forms/update_places');
+        echo $template->render('forms/update_universe');
     }
 
     function create($engine, $template) {
-        echo "new place created!";
+        #echo "new Univers created!";
+        $app = \Slim\Slim::getInstance();
+
+        $name = $app->request->params('name');
+        $description = $app->request->params('description');
+        
+        $universe = new \Entities\Universe();
+        $universe->setName($name);
+        $universe->setDescription($description);
+
+        $crud_Univers = new \Crud\Universe();
+        $crud_Univers->create($universe);
+
+        return $app->redirect($template->url('/universes'));
     }
 
     function update($id, $engine, $template) {
-        echo "place $id updated!";
+        echo "Univers $id updated!";
     }
 
     function delete($id, $engine, $template) {
-        echo "place $id deleted";
+        echo "Univers $id deleted";
     }
 
     function getTimeLineData($id) {
@@ -61,8 +74,8 @@ class Universe {
             'id' => 1,
             'name' => 'Walking Dead Character',
         );
-        // Dummy place data.
-        $place = array(
+        // Dummy Univers data.
+        $universe = array(
             'id' => 3,
             'name' => 'San Francisco',
         );
@@ -77,8 +90,8 @@ class Universe {
                 'character' => array(
                     $character,
                 ),
-                'place' => array(
-                    $place,
+                'Univers' => array(
+                    $universe,
                 ),
             ),
             array(
@@ -90,8 +103,8 @@ class Universe {
                 'character' => array(
                     $character,
                 ),
-                'place' => array(
-                    $place,
+                'Univers' => array(
+                    $universe,
                 ),
             ),
             array(
@@ -103,8 +116,8 @@ class Universe {
                 'character' => array(
                     $character,
                 ),
-                'place' => array(
-                    $place,
+                'Univers' => array(
+                    $universe,
                 ),
             ),
             array(
@@ -116,8 +129,8 @@ class Universe {
                 'character' => array(
                     $character,
                 ),
-                'place' => array(
-                    $place,
+                'Univers' => array(
+                    $universe,
                 ),
             ),
             array(
@@ -129,8 +142,8 @@ class Universe {
                 'character' => array(
                     $character,
                 ),
-                'place' => array(
-                    $place,
+                'Univers' => array(
+                    $universe,
                 ),
             ),
             array(
@@ -142,8 +155,8 @@ class Universe {
                 'character' => array(
                     $character,
                 ),
-                'place' => array(
-                    $place,
+                'Univers' => array(
+                    $universe,
                 ),
             ),
             array(
@@ -155,8 +168,8 @@ class Universe {
                 'character' => array(
                     $character,
                 ),
-                'place' => array(
-                    $place,
+                'Univers' => array(
+                    $universe,
                 ),
             ),
             array(
@@ -168,8 +181,8 @@ class Universe {
                 'character' => array(
                     $character,
                 ),
-                'place' => array(
-                    $place,
+                'Univers' => array(
+                    $universe,
                 ),
             ),
             array(
@@ -181,8 +194,8 @@ class Universe {
                 'character' => array(
                     $character,
                 ),
-                'place' => array(
-                    $place,
+                'Univers' => array(
+                    $universe,
                 ),
             ),
         );

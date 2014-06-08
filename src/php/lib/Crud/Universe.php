@@ -41,7 +41,7 @@ class Universe extends Crud {
 	 * @throws \RuntimeException
 	 */
 	public function create(\Entities\Universe $universe) {
-        $data = Array("name" => $universe->getName());
+        $data = Array("name" => $universe->getName(), "description" => $universe->getDescription());
         $id = $this->db->insert('universes', $data);
         if ($id) {
             $universe->setId($id);
