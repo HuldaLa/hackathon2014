@@ -2,8 +2,6 @@
 
 namespace Crud;
 
-
-use Database\MySQL\DbResult;
 use Entities\Character;
 
 class Universe extends Crud {

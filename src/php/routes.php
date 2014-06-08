@@ -2,7 +2,8 @@
 
 /* general rule for ids to consist of digits */
 \Slim\Route::setDefaultConditions(array(
-    'id' => '\d+'
+    'id' => '\d+',
+    'identifier' => '[a-z_]+'
 ));
 
 $app->get('/', function() use ($template) {
@@ -11,13 +12,14 @@ $app->get('/', function() use ($template) {
 
 $classMap = array (
     'characters' => '\Controller\Character',
+    'events' => '\Controller\Event',
     'places'   => '\Controller\Place',
-    'events' => '\Controller\Event'
+    'universes'   => '\Controller\Universe',
 );
 
 // Save callback for routes.
-$route_callback = function($class, $methodName) use ($app, $template) {
-    return function() use ($app, $template, $class, $methodName) {
+$route_callback = function($class, $methodName) use ($engine, $template) {
+    return function() use ($engine, $template, $class, $methodName) {
         // Get arguments.
         $args = func_get_args();
 
@@ -27,8 +29,8 @@ $route_callback = function($class, $methodName) use ($app, $template) {
         // Get new route for callback.
         $route = new \Slim\Route(FALSE, $controller_callback);
 
-        // Merge existing arguments with template.& app
-        $args[] = $app;
+        // Merge existing arguments with template & engine.
+        $args[] = $engine;
         $args[] = $template;
 
         // Set parameters.
@@ -73,3 +75,15 @@ foreach ($classMap as $controller => $class) {
         $route_callback($class, 'delete')
     );
 }
+
+// Static call to make the timeline work.
+$app->get(
+    '/universes/getTimeLineData/:id',
+    '\Controller\Universe:getTimeLineData'
+);
+
+// Static call to make the timeline work.
+$app->get(
+    '/templates/get/:identifier',
+    $route_callback('\Controller\Template', 'get')
+);

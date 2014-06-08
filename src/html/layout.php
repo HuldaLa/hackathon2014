@@ -20,6 +20,11 @@
 
     <script src="<?php echo $this->url('/js/jquery-2.1.1.min.js'); ?>"></script>
     <script src="<?php echo $this->url('/js/bootstrap.min.js'); ?>"></script>
+    <script src="<?php echo $this->url('/js/masonry.pkgd.min.js'); ?>"></script>
+    <script src="<?php echo $this->url('/js/handlebars-v1.3.0.js'); ?>"></script>
+    <script type="text/javascript">
+        var timelineTemplateBaseUrl = '<?php echo $this->url('/templates/get/'); ?>';
+    </script>
     <script charset="utf-8" src="<?php echo $this->url('/js/app.js'); ?>"></script>
 </body>
 </html>

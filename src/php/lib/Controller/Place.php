@@ -2,13 +2,14 @@
 namespace Controller;
 
 class Place {
+
     function showAll($app, $template) {
         $crud_place = new \Crud\Place();
         $template->places = $crud_place->getAll();
         echo $template->render('places');
     }
 
-    function show($id, $app, $template) {
+    function show($id, $engine, $template) {
         echo "show place with id: $id";
     }
 
@@ -18,7 +19,7 @@ class Place {
         echo $template->render('forms/create_places');
     }
 
-    function showUpdate($id, $app, $template) {
+    function showUpdate($id, $engine, $template) {
         echo $template->render('forms/update_places');
     }
 
@@ -38,11 +39,11 @@ class Place {
         return $app->redirect($template->url('/places'));
     }
 
-    function update($id, $app, $template) {
+    function update($id, $engine, $template) {
         echo "place $id updated!";
     }
 
-    function delete($id, $app, $template) {
+    function delete($id, $engine, $template) {
         echo "place $id deleted";
     }
 

@@ -1,0 +1,65 @@
+.timeline_container {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.timeline_item {
+	border: 1px dotted #f00;
+	position: relative;
+	margin-bottom: 20px;
+	width: 45%;
+}
+
+.indicator_wrapper {
+	position: absolute;
+	top: 50%;
+	width: 50px;
+}
+
+.timeline_item.fLeft .indicator_wrapper{
+	right: -51px;
+}
+
+.timeline_item.fRight .indicator_wrapper{
+	left: -51px;
+}
+
+.indicator_wrapper > .connector {
+	border-top: 2px solid #000000;
+	height: 1px;
+	width: 50px;
+}
+
+.timeline_item .indicator_wrapper > .connector:after {
+	content: "•";
+	font-size: 50px;
+	line-height: 0;
+	position: absolute;
+	right: -15px;
+	top: 0;
+}
+
+.timeline_item.fRight .indicator_wrapper > .connector:after {
+	left: -15px;
+	top: 0;
+}
+
+.fLeft {
+	float: left;
+}
+
+.fRight {
+	float: right;
+}
+
+.oHidden {
+	overflow: hidden;
+}
+
+.invisible {
+	visibility: hidden;
+}
+
+.dNone {
+	display: none;
+}
