@@ -137,7 +137,7 @@ class Universe {
                 'id' => 6,
                 'name' => 'Bludiblub',
                 'description' => 'Blablabla,',
-                'sort' => 5,
+                'sort' => 4,
                 'weight' => 4,
                 'character' => array(
                     $character,

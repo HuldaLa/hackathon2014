@@ -3,11 +3,27 @@
 	margin: 0 auto;
 }
 
+.timeline_container .point_wrapper{
+	position: relative;
+}
+
+.timeline_container .point_wrapper.multiple {
+	background-color: lightgrey;
+}
+
+.timeline_container .point_wrapper.multiple .wrapping_point {
+	font-size: 400px;
+	line-height: 0;
+	position: absolute;
+	z-index: 0;
+}
+
 .timeline_item {
 	border: 1px dotted #f00;
 	position: relative;
 	margin-bottom: 20px;
 	width: 45%;
+	z-index: 1;
 }
 
 .indicator_wrapper {
@@ -17,11 +33,11 @@
 }
 
 .timeline_item.fLeft .indicator_wrapper{
-	right: -51px;
+	right: -50px;
 }
 
 .timeline_item.fRight .indicator_wrapper{
-	left: -51px;
+	left: -50px;
 }
 
 .indicator_wrapper > .connector {

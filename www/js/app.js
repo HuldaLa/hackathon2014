@@ -1,9 +1,14 @@
 (function($, w) {
 	// Variables.
 	var timelineContainerSelector = '.timeline_container';
-	var templates = {};
+	var templates = [];
 	var templatesLoaded = false;
 	var failedTemplatesCounter = 0;
+	// Fetch templates.
+	var templates_to_load = [
+		'timeline_item',
+		'timeline_point_wrapper'
+	];
 
 	var console = (w.console || console);
 
@@ -40,33 +45,57 @@
 	// Timeline functions.
 	function renderTimeLine(data) {
 		var eventCounter = 0;
+		var pointTemplate = getTemplate('timeline_point_wrapper');
 
-		for (var i in data) {
-			var point = data[i];
+		if (pointTemplate) {
+			for (var i in data) {
+				var point = data[i];
+				var items = [];
 
-			for (var x in point) {
-				var event = point[x];
+				for (var x in point) {
+					var event = point[x];
 
-				var $element = $(createTimeLineElement(event));
+					var $element = $(createTimeLineElement(event));
 
-				if (eventCounter % 2 === 0) {
-					$element.addClass('fLeft');
+					if (eventCounter % 2 === 0) {
+						$element.addClass('fLeft');
+					}
+					else {
+						$element.addClass('fRight');
+					}
+
+					items[x] = {
+						'html': $element[0].outerHTML
+					};
+
+					eventCounter++;
 				}
-				else {
-					$element.addClass('fRight');
+
+				// Variables for point wrapper.
+				var point_wrapper_template_variables = {
+					'point': {
+						'addional_classes': '',
+						'items': items
+					}
+				};
+
+				// Add "multiple" class if more than one event is inside id.
+				if ($(point).length > 1) {
+					point_wrapper_template_variables.point.addional_classes += ' multiple';
 				}
 
-				getTimeLineContainer().append($element);
+				$pointWrapper = $(pointTemplate(point_wrapper_template_variables));
 
-				eventCounter++;
+				// Append to timeline wrapper.
+				getTimeLineContainer().append($pointWrapper);
 			}
+
+			var msnry = getTimeLineContainer().masonry({
+			  // Options
+			  columnWidth: '.timelime_item',
+			  itemSelector: '.timelime_item'
+			});
 		}
-console.log(getTimeLineContainer());
-		var msnry = getTimeLineContainer().masonry({
-		  // Options
-		  columnWidth: 200,
-		  itemSelector: '.timelime_item'
-		});
 	}
 
 	function createTimeLineElement(data) {
@@ -88,13 +117,8 @@ console.log(getTimeLineContainer());
 
 	// Check for timeline container, before we start.
 	if (getTimeLineContainer().length > 0) {
-		// Fetch templates.
-		var templates_to_load = [
-			'timeline_item'
-		];
-
-		for (var t in templates_to_load) {
-			var t_identifier = templates_to_load[t];
+		$(templates_to_load).each(function(){
+			var t_identifier = this.toString();
 
 			$.ajax(
 				timelineTemplateBaseUrl + t_identifier,
@@ -102,24 +126,30 @@ console.log(getTimeLineContainer());
 					dataType: 'html',
 					success: function(response, status, XHR) {
 						templates[t_identifier] = response;
+						if (t_identifier === 'timeline_point_wrapper') {
+							templatesLoaded = true;
+						}
 					},
 					error: function() {
+						console.log('ss');
 						failedTemplatesCounter++;
 					},
 					type: 'GET'
 				}
 			);
-		}
+		});
 
-		var templatesLoadedCheckerInterval = setInterval(
-			function() {
-				if (($(templates).length + failedTemplatesCounter) == templates_to_load.length) {
-					templatesLoaded = true;
-					clearInterval(templatesLoadedCheckerInterval);
-				}
-			},
-			50
-		);
+		// var templatesLoadedCheckerInterval = setInterval(
+		// 	function() {
+		// 		// console.log(($(templates).length + failedTemplatesCounter));
+		// 		// console.log(templates_to_load.length);
+		// 		if (($(templates).length + failedTemplatesCounter) == templates_to_load.length) {
+		// 			clearInterval(templatesLoadedCheckerInterval);
+		// 			templatesLoaded = true;
+		// 		}
+		// 	},
+		// 	50
+		// );
 
 		var templateCheckInterval = setInterval(
 			function() {
@@ -128,7 +158,7 @@ console.log(getTimeLineContainer());
 					clearInterval(templateCheckInterval);
 				}
 			},
-			100
+			500
 		);
 	}
 })(jQuery, window);
