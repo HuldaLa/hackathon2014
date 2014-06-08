@@ -3,7 +3,7 @@
 namespace Entities;
 
 
-use Database\MySQL\Db;
+use Database\MySQL\MysqliDb;
 
 class Factory
 {
@@ -11,7 +11,7 @@ class Factory
 	private $crudCharacter;
 	private $crudUniverse;
 
-	public function __construct(Db $db)
+	public function __construct(MysqliDb $db = NULL)
 	{
 		$this->crudCharacter = new \Crud\Character($db);
 		$this->crudUniverse = new \Crud\Universe($db);

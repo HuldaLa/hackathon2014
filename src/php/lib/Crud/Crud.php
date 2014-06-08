@@ -2,14 +2,17 @@
 
 namespace Crud;
 
-use Database\MySQL\Db;
+use Database\MySQL\MysqliDb;
 
 class Crud {
 
 	protected $db;
 
-	public function __construct(Db $db) {
-		$this->db = $db;
+	public function __construct(MysqliDb $db = NULL) {
+		if (is_null($db)) {
+			$db = MysqliDb::getInstance();
+		}
 
+		$this->db = $db;
 	}
 } 
