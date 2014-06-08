@@ -11,11 +11,11 @@ class Event {
     }
 
     function showCreate($template) {
-        echo "event creation form";
+        echo $template->render('forms/create_events');
     }
 
     function showUpdate($id, $template) {
-        echo "event $id update form";
+        echo $template->render('forms/update_events');
     }
 
     function create($template) {
