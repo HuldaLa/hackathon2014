@@ -13,15 +13,14 @@ class Character extends Crud {
 	 * @todo transaction
 	 */
 	public function create(\Entities\Character $char) {
-		$result = $this->db->query("INSERT INTO characters (name) VALUES ('%s')", $char->getName());
-		if ($result === false) {
-			throw new \RuntimeException('not able to create character ' . $char);
-		}
-		$char->setId($this->db->getLastInsertId());
-		$result = $this->db->query("INSERT INTO character_universe (people_id, universe_id)", $char->getId(), $char->getUniverse()->getId());
-		if ($result === false) {
-			throw new \RuntimeException('not able to create character ' . $char);
-		}
+        $data = Array("name" => $char->getName());
+        $id = $this->db->insert('characters', $data);
+        if ($id) {
+            $char->setId($id);
+            return $char;
+        }
+
+        throw new \RuntimeException("not able to create character ", $char);
 	}
 
 	/**
@@ -30,11 +29,12 @@ class Character extends Crud {
 	 * @throws \RuntimeException
 	 */
 	public function getById($id) {
-		$result = $this->db->query("SELECT * FROM people WHERE id = %d", $id);
-		if ($result instanceof DbResult) {
-			return $result->fetchAssoc();
-		}
+        $this->db->where ("id", $id);
+        $character = $this->db->getOne ("characters");
+        if (isset($character)) {
+            return $character;
+        }
 
-		throw new \RuntimeException("not table to read people id " +  $id);
+        throw new \RuntimeException("not able to read character.", $id);
 	}
 } 

@@ -8,13 +8,14 @@ class Location extends Crud {
 
 
 	public function create(\Entities\Location $location) {
-		$result = $this->db->query("INSERT INTO location (name) VALUES ('%s')", $location->getName());
-		if ($result instanceof DbResult) {
-			$location->setId($this->db->getLastInsertId());
+
+        $data = Array("name" => $location->getName());
+		$id = $this->db->insert('places', $data);
+		if ($id) {
+			$location->setId($id);
 			return $location;
 		}
 
-
-		throw new \RuntimeException("not able to create universe ", $location);
+		throw new \RuntimeException("not able to create location ", $location);
 	}
 } 
