@@ -15,6 +15,8 @@ class Character extends Crud {
 	public function create(\Entities\Character $char) {
         $data = Array("name" => $char->getName());
         $id = $this->db->insert('characters', $data);
+
+
         if ($id) {
             $char->setId($id);
             return $char;

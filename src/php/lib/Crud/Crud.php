@@ -2,7 +2,7 @@
 
 namespace Crud;
 
-use Database\MySQL\MysqliDb;
+use MysqliDb;
 
 class Crud {
 

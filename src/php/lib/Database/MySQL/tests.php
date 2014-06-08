@@ -1,5 +1,5 @@
 <?php
-require_once ("MysqliDb.php");
+require_once("MysqliDb.php");
 error_reporting(E_ALL);
 
 $db = new Mysqlidb('localhost', 'root', '', 'testdb');

@@ -2,31 +2,31 @@
 namespace Controller;
 
 class Event {
-    function showAll($template) {
+    function showAll($app, $template) {
         echo "list of events";
     }
 
-    function show($id, $template) {
+    function show($id, $app, $template) {
         echo "show event with id: $id";
     }
 
-    function showCreate($template) {
+    function showCreate($app, $template) {
         echo $template->render('forms/create_events');
     }
 
-    function showUpdate($id, $template) {
+    function showUpdate($id, $app, $template) {
         echo $template->render('forms/update_events');
     }
 
-    function create($template) {
+    function create($app, $template) {
         echo "new event created!";
     }
 
-    function update($id, $template) {
+    function update($id, $app, $template) {
         echo "event $id updated!";
     }
 
-    function delete($id, $template) {
+    function delete($id, $app, $template) {
         echo "event $id deleted";
     }
 

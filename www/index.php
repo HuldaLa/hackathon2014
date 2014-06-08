@@ -38,8 +38,9 @@ $config = json_decode($configRaw);
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
 
-// Initiate the database once and for all time.
-$db = new \Database\MySQL\MysqliDb('localhost', 'root', 'root', 'hackathon2k14');
+// Initiate the database once and for all time
+require_once(PATH_PHP_LIB . '/Database/MySQL/MysqliDb.php');
+$db = new MysqliDb('localhost', 'root', 'root', 'hackathon2k14');
 
 // Include router configuration.
 require PATH_PHP . DS . 'routes.php';

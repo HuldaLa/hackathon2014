@@ -16,8 +16,8 @@ $classMap = array (
 );
 
 // Save callback for routes.
-$route_callback = function($class, $methodName) use ($template) {
-    return function() use ($template, $class, $methodName) {
+$route_callback = function($class, $methodName) use ($app, $template) {
+    return function() use ($app, $template, $class, $methodName) {
         // Get arguments.
         $args = func_get_args();
 
@@ -27,7 +27,8 @@ $route_callback = function($class, $methodName) use ($template) {
         // Get new route for callback.
         $route = new \Slim\Route(FALSE, $controller_callback);
 
-        // Merge existing arguments with template.
+        // Merge existing arguments with template.& app
+        $args[] = $app;
         $args[] = $template;
 
         // Set parameters.

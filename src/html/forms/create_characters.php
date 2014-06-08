@@ -1,7 +1,7 @@
 <?php $this->layout("layout") ?>
 
 <?php $this->start('content') ?>
-<form class="form-horizontal">
+<form class="form-horizontal" method="POST">
   <fieldset>
 
     <!-- Form Name -->
@@ -29,10 +29,9 @@
       <label class="col-md-4 control-label" for="category">Universum</label>
       <div class="col-md-5">
         <select id="category" name="universes" class="form-control">
-        <?php # $universes = array(0=>'Mad Men', 2=>'WoW') ?>
-          <?php #  foreach ($universes as $univers) { ?>
-            <option value="<?php # echo $univers->getId() ?>"><?php #echo $univers->getName(); ?></option>
-          <?php # } ?>
+          <?php foreach($this->universes as $universe): ?>
+            <option value="<?php echo $universe['id'] ?>"><?php echo $universe['name'] ?></option>
+          <?php endforeach ?>
         </select>
       </div>
     </div>
