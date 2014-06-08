@@ -11,11 +11,11 @@ class Place {
     }
 
     function showCreate($template) {
-        echo "place creation form";
+        echo $template->render('forms/create_places');
     }
 
     function showUpdate($id, $template) {
-        echo "place $id update form";
+        echo $template->render('forms/update_places');
     }
 
     function create($template) {

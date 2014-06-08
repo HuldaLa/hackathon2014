@@ -1,25 +1,10 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<title>App</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+<?php $this->layout("layout") ?>
 
-    <link rel="stylesheet" href="<?php echo $this->url('/css/bootstrap.min.css'); ?>">
-    <link rel="stylesheet" href="<?php echo $this->url('/css/bootstrap-theme.min.css'); ?>">
-	<link rel="stylesheet" href="<?php echo $this->url('/css/app.css'); ?>" />
-</head>
-<body>
-    <h1>Hello!</h1>
-    <span class="glyphicon glyphicon-search"></span>
-    <div class="btn-group">
-        <button type="button" class="btn btn-default">Left</button>
-        <button type="button" class="btn btn-default">Middle</button>
-        <button type="button" class="btn btn-default">Right</button>
-    </div>
+<?php $this->start('content') ?>
+<h1>Hello!</h1>
+    
 
-    <script src="<?php echo $this->url('/js/jquery-2.1.1.min.js'); ?>"></script>
-    <script src="<?php echo $this->url('/js/bootstrap.min.js'); ?>"></script>
-    <script charset="utf-8" src="<?php echo $this->url('/js/app.js'); ?>"></script>
-</body>
-</html>
+<a href="<?php echo $this->url('/characters/create'); ?>" class="btn btn-default">Add Character</a>
+<a href="<?php echo $this->url('/events/create'); ?>" class="btn btn-default">Add Event</a>
+<a href="<?php echo $this->url('/places/create'); ?>" class="btn btn-default">Add Place</a>
+<?php $this->end() ?>
