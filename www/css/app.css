@@ -19,7 +19,7 @@
 }
 
 .timeline_item {
-	border: 1px dotted #f00;
+	/* border: 1px dotted #f00; */
 	position: relative;
 	margin-bottom: 20px;
 	width: 45%;

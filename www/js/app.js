@@ -1,7 +1,7 @@
 (function($, w) {
 	// Variables.
 	var timelineContainerSelector = '.timeline_container';
-	var templates = [];
+	var templates = {};
 	var templatesLoaded = false;
 	var failedTemplatesCounter = 0;
 	// Fetch templates.
@@ -126,9 +126,6 @@
 					dataType: 'html',
 					success: function(response, status, XHR) {
 						templates[t_identifier] = response;
-						if (t_identifier === 'timeline_point_wrapper') {
-							templatesLoaded = true;
-						}
 					},
 					error: function() {
 						console.log('ss');
@@ -139,17 +136,15 @@
 			);
 		});
 
-		// var templatesLoadedCheckerInterval = setInterval(
-		// 	function() {
-		// 		// console.log(($(templates).length + failedTemplatesCounter));
-		// 		// console.log(templates_to_load.length);
-		// 		if (($(templates).length + failedTemplatesCounter) == templates_to_load.length) {
-		// 			clearInterval(templatesLoadedCheckerInterval);
-		// 			templatesLoaded = true;
-		// 		}
-		// 	},
-		// 	50
-		// );
+		var templatesLoadedCheckerInterval = setInterval(
+			function() {
+				if ((Object.keys(templates).length + failedTemplatesCounter) == templates_to_load.length) {
+					clearInterval(templatesLoadedCheckerInterval);
+					templatesLoaded = true;
+				}
+			},
+			500
+		);
 
 		var templateCheckInterval = setInterval(
 			function() {
