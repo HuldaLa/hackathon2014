@@ -11,7 +11,7 @@ class Universe {
 
     function show($id, $engine, $template) {
         // Dummy data.
-        $universee = array(
+        $universe = array(
             'id' => 1,
             'name' => 'Walking Dead',
             'category' => array(
